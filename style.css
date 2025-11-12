@@ -178,11 +178,10 @@ body::before {
     font-weight: bold;
 }
 
+.previous-button,
 .next-button {
     position: absolute;
     bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
     padding: 20px 60px;
     font-size: 1.5rem;
     font-weight: bold;
@@ -197,13 +196,88 @@ body::before {
     z-index: 2;
 }
 
+.previous-button {
+    left: calc(50% - 180px);
+    transform: translateX(-50%);
+}
+
+.next-button {
+    left: calc(50% + 180px);
+    transform: translateX(-50%);
+}
+
+.next-button.centered {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.previous-button:hover,
 .next-button:hover {
     background: rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.8);
     transform: translateX(-50%) scale(1.05);
 }
 
+.next-button.centered:hover {
+    transform: translateX(-50%) scale(1.05);
+}
+
+.previous-button:active,
 .next-button:active {
     transform: translateX(-50%) scale(0.98);
+}
+
+.next-button.centered:active {
+    transform: translateX(-50%) scale(0.98);
+}
+
+.compromised-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease;
+}
+
+.compromised-text {
+    font-size: 8rem;
+    font-weight: bold;
+    color: #ff0000;
+    text-shadow: 
+        0 0 20px rgba(255, 0, 0, 0.8),
+        0 0 40px rgba(255, 0, 0, 0.6),
+        0 0 60px rgba(255, 0, 0, 0.4),
+        3px 3px 6px rgba(0, 0, 0, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    animation: pulse 2s ease-in-out infinite;
+    text-align: center;
+    padding: 40px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
 }
 
