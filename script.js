@@ -13,6 +13,7 @@ const initialInstructionsHTML = `
             <li>Keep your eyes closed when instructed.</li>
             <li>Only perform the detection method the group agreed on.</li>
             <li>Pass on the ball immediately.</li>
+            <li>At least half of the hackers must send a hack.</li>
         </ul>
     </div>
     <div class="getting-started-section">
@@ -23,13 +24,22 @@ const initialInstructionsHTML = `
             <li>Close your eyes when materials are passed out.</li>
         </ol>
     </div>
+    <div class="how-to-win-section">
+        <div class="section-title">How to win:</div>
+        <ul class="rules-list">
+            <li>Hacker do not send a hack twice</li>
+            <li>All the hackers found</li>
+            <li>Dwell time is too high</li>
+        </ul>
+    </div>
 `;
 
 const simpleInstructions = [
     "1. Collaborate",
     "2. Operate",
     "3. Eliminate",
-    "4. Innovate"
+    "4. Innovate",
+    "5. Increment"
 ];
 
 const instructionsElement = document.getElementById('instructions');
@@ -96,6 +106,17 @@ function showCollaborateStep() {
     }, 60000);
 }
 
+function incrementCounter() {
+    counter++;
+    counterElement.textContent = counter;
+    // Add animation class
+    counterElement.classList.add('counter-increment');
+    // Remove animation class after animation completes
+    setTimeout(() => {
+        counterElement.classList.remove('counter-increment');
+    }, 600);
+}
+
 function advanceToNextStep() {
     clearAutoAdvanceTimer();
     clearCountdownInterval();
@@ -120,8 +141,10 @@ function advanceToNextStep() {
         instructionsElement.innerHTML = simpleInstructions[3];
         instructionsElement.classList.add('simple-text');
     } else if (clickCount === 5) {
-        counter++;
-        counterElement.textContent = counter;
+        instructionsElement.innerHTML = simpleInstructions[4];
+        instructionsElement.classList.add('simple-text');
+        incrementCounter();
+    } else if (clickCount === 6) {
         clickCount = 1;
         showCollaborateStep();
     }
