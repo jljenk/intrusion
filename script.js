@@ -9,6 +9,7 @@ const initialInstructionsHTML = `
             <li>Don't view another person's screen or card.</li>
             <li>Keep your eyes closed when instructed.</li>
             <li>Only perform the detection method the group agreed on.</li>
+            <li>Pass on the ball immediately.</li>
         </ul>
     </div>
     <div class="getting-started-section">
