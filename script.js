@@ -29,7 +29,7 @@ const initialInstructionsHTML = `
         <div class="section-title">Getting started</div>
         <ol class="getting-started-list">
             <li>Distribute cards.</li>
-            <li>Join the Slack group.</li>
+            <li>Join (only) your Slack group.</li>
             <li>Close your eyes when materials are passed out.</li>
         </ol>
     </div>
