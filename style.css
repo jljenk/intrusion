@@ -89,6 +89,34 @@ body::before {
     font-weight: bold;
 }
 
+.collaborate-text {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.countdown-container {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.countdown-label {
+    font-size: 1.5rem;
+    font-weight: normal;
+    opacity: 0.9;
+}
+
+.countdown {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #ff6b6b;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+    min-width: 100px;
+}
+
 .welcome-title {
     font-size: 2.5rem;
     font-weight: bold;
