@@ -33,8 +33,8 @@ const initialInstructionsHTML = `
             <li>Close your eyes when materials are passed out.</li>
         </ol>
     </div>
+    <br>
     <div class="how-to-win-section">
-        <div class="section-title">How to win:</div>
         <div class="guide-content">
             <p><strong>Intrusion detection specialists win if either:</strong></p>
             <ul class="rules-list">
