@@ -35,11 +35,17 @@ const initialInstructionsHTML = `
     </div>
     <div class="how-to-win-section">
         <div class="section-title">How to win:</div>
-        <ul class="rules-list">
-            <li>Hacker do not send a hack twice.</li>
-            <li>All the hackers found.</li>
-            <li>Dwell time is too high.</li>
-        </ul>
+        <div class="guide-content">
+            <p><strong>Intrusion detection specialists win if either:</strong></p>
+            <ul class="rules-list">
+                <li>No hacker infects any packet on more than one round — or</li>
+                <li>All hackers are identified and removed from the game.</li>
+            </ul>
+            <p><strong>Hackers win if:</strong></p>
+            <ul class="rules-list">
+                <li>Dwell time reaches the configured maximum (dt) — the system shows "System Compromised."</li>
+            </ul>
+        </div>
     </div>
 `;
 
