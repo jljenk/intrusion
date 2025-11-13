@@ -22,7 +22,7 @@ const initialInstructionsHTML = `
             <li>Keep your eyes closed when instructed.</li>
             <li>Stay seated and avoid physical contact with others when identifying threats.</li>
             <li>Pass on the ball immediately.</li>
-            <li>At least half of the hackers must send a hack each round.</li>
+            <li>At least half of the hackers must send a hack each round. Any given hacker must infect a ball at least every other round.</li>
         </ul>
     </div>
     <div class="getting-started-section">

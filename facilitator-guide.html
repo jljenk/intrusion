@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facilitator Guide - Intrusion</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            overflow-y: auto;
+            overflow-x: hidden;
+            height: auto;
+            min-height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1514565131-fce0801e5785?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        
+        body::before {
+            pointer-events: none;
+        }
+        
+        .guide-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .guide-title {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .guide-section {
+            margin-bottom: 30px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .guide-section-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .guide-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .guide-content ul,
+        .guide-content ol {
+            margin-left: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .guide-content li {
+            margin-bottom: 8px;
+        }
+        
+        .guide-content p {
+            margin-bottom: 12px;
+        }
+        
+        .guide-content strong {
+            font-weight: bold;
+        }
+        
+        .guide-content a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: underline;
+        }
+        
+        .guide-content a:hover {
+            color: white;
+        }
+        
+        .guide-subtitle {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="guide-container">
+        <a href="index.html" class="back-link">← Back to Game</a>
+        
+        <h1 class="guide-title">Intrusion — Facilitator's Guide</h1>
+        
+        <div class="guide-section">
+            <div class="guide-content">
+                <p><strong>By Jeffrey Jenkins</strong> — Brigham Young University</p>
+                <p><strong>Estimated run-time:</strong> ~60 minutes (5 rounds); flexible.</p>
+                <p><strong>Ideal class size:</strong> 20–50 (works best with students seated at tables or clusters of desks).</p>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <div class="guide-section-title">Learning Objectives</div>
+            <div class="guide-content">
+                <p>By the end of this activity students will be able to:</p>
+                <ul>
+                    <li>Explain why identifying threats in a network is complex and uncertain.</li>
+                    <li>List concrete features or signals that intrusion-detection systems (IDS) might use to flag malicious activity.</li>
+                    <li>Describe how security controls (network segmentation, packet inspection, threat intelligence, insider threat controls, etc.) affect detection capability.</li>
+                    <li>Experience, via simulation, the operational trade-offs between detection, disruption, and business continuity.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <div class="guide-section-title">Materials</div>
+            <div class="guide-content">
+                <ul>
+                    <li>Box of ping-pong balls (pack): <a href="https://a.co/d/cLjSSpv" target="_blank">https://a.co/d/cLjSSpv</a></li>
+                    <li>Small round stickers (for "infecting" balls): <a href="https://a.co/d/iPmQodp" target="_blank">https://a.co/d/iPmQodp</a></li>
+                    <li>Bucket or box to serve as the destination basket: <a href="https://a.co/d/8LIpybH" target="_blank">https://a.co/d/8LIpybH</a></li>
+                    <li>Card deck (one card per student): <a href="https://intrusion.velocity.ninja/cards.pdf" target="_blank">https://intrusion.velocity.ninja/cards.pdf</a></li>
+                    <li>Slack (or similar chat) — create one channel per group (A, B, C, D, E)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <div class="guide-section-title">High-Level Overview (What Happens)</div>
+            <div class="guide-content">
+                <ul>
+                    <li>Each student is both a network node (they immediately pass packets — ping-pong balls — toward a basket) and a member of one team (A–E).</li>
+                    <li>Group E is the hacking group: they secretly decide who will "infect" packets by placing a sticker on a ball.</li>
+                    <li>Other groups are intrusion detection specialists: they observe packet flow, discuss on Slack, nominate suspects, and can "remove" (vote out) a player each round.</li>
+                    <li>The facilitator runs repeated rounds. Each round has 5 phases (Collaborate → Operate → Eliminate → Innovate → Increment). A global dwell time increases each round; if it reaches a configured maximum, the system shows "System Compromised" and the hackers win.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <div class="guide-section-title">Setup (Before Activity)</div>
+            <div class="guide-content">
+                <ol>
+                    <li>Arrange students at desks or tables so balls can be bounced from one table or student to the next and eventually to the basket at the back of the room.</li>
+                    <li>Place the basket/box at the back of the room (past the last row).</li>
+                    <li>Create Slack channels and invite students: one channel for each group A, B, C, D, and E (the hackers group). You can create few channels for smaller classes. Tell students to use their assigned channel only.</li>
+                    <li>Prepare the number of cards to match the number of students (you can choose how many hackers you want to have based on desired difficulty). Shuffle and hand out one card to each student. Each card contains one or more letters (A–E). Students should not reveal the letters on their card; cards determine which Slack channel(s) they join. Have them join the Slack channel(s)</li>
+                    <li>On the instructor's machine, open the website: <a href="https://intrusion.velocity.ninja/" target="_blank">https://intrusion.velocity.ninja/</a>
+                        <ul>
+                            <li>Optional: set a maximum dwell time with the URL parameter dt. Example: <a href="https://intrusion.velocity.ninja/?dt=5" target="_blank">https://intrusion.velocity.ninja/?dt=5</a> sets the maximum dwell time to 5 rounds. When current dwell time equals max, the system will display "System Compromised."</li>
+                        </ul>
+                    </li>
+                    <li>For Group E (hackers), post in their Slack channel: "You are the hacking group. Coordinate here. Be strategic about who infects packets and when."</li>
+                    <li>Prepare sticker sheets and keep them out of sight until the step where hackers receive stickers.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <div class="guide-section-title">Facilitator Script — Initial Reveal & Sticker Distribution</div>
+            <div class="guide-content">
+                <ol>
+                    <li>Tell everyone: "Each group plays an intrusion-detection team. Each person also forwards packets (ping-pong balls) as a part of a network. When a packet reaches the basket, the message has been delivered."</li>
+                    <li>Explain infection: "Hackers will secretly attach a sticker to a ball to mark it as infected. If you receive a ball with a sticker, do not stop or modify it — allow it to reach the basket — but note where you think it came from."</li>
+                    <li>Rules to read aloud (and display from website):
+                        <ul>
+                            <li>Do not view another person's screen or card.</li>
+                            <li>Keep your eyes closed during designated blind steps.</li>
+                            <li>Stay seated; avoid physical contact.</li>
+                            <li>Pass/ bounce the ball immediately when it reaches you.</li>
+                            <li>At least half of the hackers must attempt to infect a packet each round (this keeps the game balanced).</li>
+                        </ul>
+                    </li>
+                    <li>Sticker distribution (privacy-preserving): have everyone close their eyes. Tell Group # to open their eyes and give them a sheet of stickers, while walking around the room (so distribution appears random). Then have everyone open their eyes.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <div class="guide-section-title">Winning & Losing</div>
+            <div class="guide-content">
+                <p><strong>Intrusion detection specialists win if either:</strong></p>
+                <ol>
+                    <li>No hacker infects any packet on more than one round — or</li>
+                    <li>All hackers are identified and removed from the game.</li>
+                </ol>
+                <p><strong>Hackers win if:</strong></p>
+                <ol>
+                    <li>Dwell time reaches the configured maximum (dt) — the system shows "System Compromised."</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <div class="guide-section-title">Round Structure — Step-by-Step (Repeat Until Win)</div>
+            <div class="guide-content">
+                <p>Each round has five phases. Suggested timings for a 60-minute session (5 rounds): Collaborate 1:00, Operate 3–5:00, Eliminate 3:00, Innovate 2–3:00, Increment+debrief 1:00.</p>
+                
+                <div class="guide-subtitle">1) Collaborate (1 minute)</div>
+                <ul>
+                    <li>Groups use their Slack channels to discuss strategy.</li>
+                    <li>Hackers coordinate who will infect balls this round and how to avoid detection.</li>
+                    <li>Intrusion teams decide monitoring strategies (e.g., who watches packets vs. who forwards them).</li>
+                </ul>
+                <p><strong>Discussion tie-ins:</strong> threat intelligence sharing, operational communication channels, false positives/negatives.</p>
+
+                <div class="guide-subtitle">2) Operate (pass the packets)</div>
+                <ul>
+                    <li>Pass the balls to the students in the first row; students immediately bounce balls to other students toward the basket. Balls may take many different paths to the destination, mimicking the real-world network traffic.</li>
+                    <li>When all ping-pong balls arrive at the basket, the facilitator inspects which balls have stickers.</li>
+                    <li>Students should not stop infected balls.</li>
+                </ul>
+                <p><strong>Discussion tie-ins:</strong> packet fragmentation, telemetry fidelity, packet inspection trade-offs (latency vs. visibility).</p>
+
+                <div class="guide-subtitle">3) Eliminate (nomination & vote)</div>
+                <ul>
+                    <li>The class nominates up to two suspects (names/positions). The team may decide to nominate none.</li>
+                    <li>Each nominated student has 10–20 seconds to defend themselves.</li>
+                    <li>Class votes; the highest-voted student is removed from the game (no longer passes or receives balls next rounds).</li>
+                    <li>Note: removal simulates quarantining or isolating a suspected node.</li>
+                </ul>
+                <p><strong>Discussion tie-ins:</strong> human-in-the-loop decisions, investigation workflows, cost of false positives (removing a benign node).</p>
+
+                <div class="guide-subtitle">4) Innovate (optional purchase/change)</div>
+                <ul>
+                    <li>The team may "invest" in an innovation that changes the rules for the remainder of the game (facilitator approval required). Innovations should map to real-world security controls and be plausible. Maybe start the discussion by asking, "Why is it so hard to detect threats? What would make it easier?"</li>
+                    <li>Examples (and real-world mapping):
+                        <ul>
+                            <li>Let students inspect a ball for 1 second before passing (packet inspection).</li>
+                            <li>Restrict ball movement to vertical lanes only (network segmentation).</li>
+                            <li>Require all balls from a table pass through one person (firewall / chokepoint).</li>
+                            <li>Allow a short yes/no question to a previously identified suspect (active response).</li>
+                        </ul>
+                    </li>
+                    <li>Facilitator may refuse innovations that break realism or unbalance the game. Encourage students to justify the innovation's cost/benefit.</li>
+                </ul>
+                <p><strong>Discussion tie-ins:</strong> trade-offs in deploying controls, cost/impact on business processes.</p>
+
+                <div class="guide-subtitle">5) Increment (dwell time)</div>
+                <ul>
+                    <li>Increment the dwell time counter by 1. If dwell time equals the pre-set maximum (URL dt), the game ends with "System Compromised."</li>
+                    <li>Otherwise, proceed to the next round beginning with Collaborate.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <div class="guide-section-title">Discussion Prompts & Debrief</div>
+            <div class="guide-content">
+                <p>Use subset of questions after each round or at the end:</p>
+                <ul>
+                    <li>What strategies did your team use to identify suspicious behavior, and how do those strategies reflect real-world intrusion detection practices? Some response might include:
+                        <ul>
+                            <li>Look for mentions of dividing roles (some monitor, others pass)—parallels SOC teams and IDS monitoring.</li>
+                            <li>Students might mention focusing on one area—connect to network segmentation and targeted monitoring.</li>
+                            <li>Observing unusual behavior or hesitation mirrors anomaly detection and behavioral analytics.</li>
+                            <li>Sharing observations between groups reflects threat intelligence sharing and correlation across systems.</li>
+                            <li>If students discuss false suspicions, relate it to false positives in IDS operations.</li>
+                        </ul>
+                    </li>
+                    <li>What behavioral signals made you suspicious of a player? What signals might be helpful in detecting real-world security threats (e.g., detecting intrusion, phishing emails, insider threats, etc.)</li>
+                    <li>Which innovations helped detection? Which hindered it? Why?</li>
+                    <li>How did network layout (table arrangement, passing patterns) affect visibility? (Tie to segmentation, taps, and monitoring placement.)</li>
+                    <li>Were there trade-offs where making detection easier would have slowed legitimate traffic? (Latency vs. security.)</li>
+                    <li>What real-world IDS features correspond to the things you looked for? (e.g., connection frequency, unfamiliar ports/SSH tunnels, anomalous process installs, email features for phishing.)</li>
+                    <li>How does threat intelligence (sharing signals between groups) change detection speed and accuracy?</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <div class="guide-section-title">Facilitation Tips & Troubleshooting</div>
+            <div class="guide-content">
+                <ul>
+                    <li>Keep time. Use a visible timer for the Collaborate and Operate phases.</li>
+                    <li>Enforce secrecy. If students peek at cards or Slack channels, pause and remind them of the rules — secrecy is essential to the exercise.</li>
+                    <li>Balance rounds. If hackers are consistently winning too quickly, require them to infect more balls each round or require all hackers to infect a ball each round (so others have a better chance of seeing suspicious behavior). You can also allow some bigger innovations. If intrusion teams dominate, restrict available innovations.</li>
+                    <li>Safety: remind students to remain seated and avoid throwing balls aggressively. No physical contact.</li>
+                    <li>Record observations. As facilitator, jot down where infected balls were observed and how votes played out; this helps with the post-game debrief.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <div class="guide-section-title">Variants & Extensions</div>
+            <div class="guide-content">
+                <ul>
+                    <li><strong>Short class (30 minutes):</strong> run 2–3 condensed rounds. Shorten Operate and Eliminate phases.</li>
+                    <li><strong>Advanced students:</strong> introduce false-positive stickers (harmless stickers placed by non-hackers to create confusion) to examine signal-noise trade-offs.</li>
+                    <li><strong>Assessment:</strong> have students write a short reflection tying their in-game decisions to IDS design, detection engineering, or a policy recommendation.</li>
+                    <li><strong>Scoring:</strong> assign points for correct identifications, wrong removals (penalty), and for hackers who reach dwell-time goals — use a scoreboard to increase competition.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
